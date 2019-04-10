@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jieyuefeng&#39;s Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        6. 缓存 - Jieyuefeng&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Jieyuefeng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        6. 缓存
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-04-11 01:46:26</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java学习" title="Java学习">Java学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <ol>
+<li><p>redis是什么</p>
+<ul>
+<li>redis本质上是一个Key-Value类型的内存数据库，性能出色且支持多种数据类型，缺点是受限于物理内存只适合小数据量的高性能操作上。</li>
+<li>redis为什么这么快<ul>
+<li>完全基于内存</li>
+<li>定制化的数据结构</li>
+<li>单线程避免上下文切换和竞争条件</li>
+<li>使用多路IO复用模型，NIO</li>
+</ul>
+</li>
+<li>redis采用一个线程处理所有的网络请求，其他模块仍用了多线程<ul>
+<li><strong>多路复用</strong>技术处理客户端连接(多个网络连接同一个处理线程)</li>
+<li>非阻塞IO处理数据的读写</li>
+<li>指令队列，redis为每个客户端关联一个指令队列</li>
+<li>响应队列：redis为每个客户端关联一个响应队列</li>
+</ul>
+</li>
+<li>redis定时任务(定时回收超时的key)会记录在一个最小堆的数据结构中，最先执行的任务在最上面</li>
+</ul>
+</li>
+<li><p>redis有哪些数据结构，底层怎么实现</p>
+<ul>
+<li>五大数据类型<ul>
+<li>string字符串，二进制安全(自定义了字符串存储，可以存放\0)，命令：get、set、mset(原子操作)、setex设置过期时间、ttl获取过期时间、incr自增、decr自减、incrby增加、decrby减少、del</li>
+<li>hash键值对集合，命令：hset、hget、hdel、hexists、hkeys、hvals、hlen、hgetall</li>
+<li>list有序集合，命令：lpush插入头部、lpop移除并返回头、lrange区间、lset、lindex、rpop、rpush</li>
+<li>set无序集合，命令：sadd、scard集合数量、sinter全部成员、spop</li>
+<li>zset有序的set，zrange</li>
+</ul>
+</li>
+<li>底层数据结构<ul>
+<li>简单动态字符串SDS</li>
+<li>双向链表</li>
+<li>字典(符号表、关联数组、映射、map)：保存键值对，通常有两个hash，一个平时用，一个rehash用</li>
+<li>跳跃表skiplist，分层的有序链表</li>
+<li>整数集合intset，存储int8，长度可升级，不可降级</li>
+<li>压缩列表ziplist，为节省内存开发</li>
+</ul>
+</li>
+<li><code>object encoding key</code> 可查看底层存储类型</li>
+<li><code>setnx key value</code> 当key不存在时设置value并返回1，否则返回0，可用于分布式锁，<strong>SET</strong> if <strong>N</strong>ot e<strong>X</strong>ists</li>
+</ul>
+</li>
+<li><p>redis缓存穿透，缓存雪崩</p>
+<ul>
+<li>缓存一致性问题<ul>
+<li>合适的缓存更新策略</li>
+<li>更新数据后更新缓存(消息队列)</li>
+<li>缓存失败增加重试机制</li>
+</ul>
+</li>
+<li>缓存击穿问题：恶意大量请求没有缓存的数据<ul>
+<li>使用互斥锁(分布式互斥锁，更新缓存时加锁)</li>
+<li>接口限流、降级、熔断</li>
+<li>布隆过滤器，所有存在的key都加入布隆过滤器，对于请求不在布隆过滤器里的key不处理</li>
+</ul>
+</li>
+<li>缓存雪崩问题：同一时间大量key失效，然后一大波请求瞬间落到数据库<ul>
+<li>加锁</li>
+<li>两级缓存，一级设置超时，二级不超时，一级超时时查询二级，一级更新时更新二级</li>
+<li>过期时间增加随机数</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>redis的并发竞争问题怎么解决？</p>
+<p>Redis为单进程单线程模式，采用队列模式将并发访问变为串行访问，redis本身没有锁的概念，redis的多个客户端也不存在竞争，但是jedis客户端会redis进行并发访问时会发生超时、阻塞等问题，通常有2种解决办法：</p>
+<ul>
+<li>客户端角度，使用连接池与redis通信，并对读写操作加锁</li>
+<li>服务器角度，利用setnx实现锁</li>
+</ul>
+</li>
+<li><p>redis持久化的方式，优缺点是什么，怎么实现的</p>
+<ul>
+<li>RDB：对redis中的数据执行周期性的持久化<ul>
+<li>生成多个数据文件，适合做冷备</li>
+<li>对读写影响较小</li>
+<li>重建更快速</li>
+<li>会丢失一段时间的数据</li>
+<li>数据文件特别大时会导致服务短暂不可用</li>
+</ul>
+</li>
+<li>AOF：对每条写入命令以append-only的模式写入一个日志文件，在redis重启时候通过回放重建<ul>
+<li>丢失数据时间短</li>
+<li>写入快</li>
+<li>日志文件可读性好，可人工修改</li>
+<li>AOF日志比RDB大</li>
+</ul>
+</li>
+<li>可同时启用另种持久化模式</li>
+</ul>
+</li>
+<li><p>redis的数据淘汰策略(当内存不足以容纳新写入的数据时)</p>
+<ul>
+<li>volatile-lru：在设置了过期时间的键空间中，移除最近最少使用的</li>
+<li>allkeys-lru：移除最近最少使用的key</li>
+<li>volatile-random：在设置了过期时间的键空间中随机移除一个键</li>
+<li>allkeys-random：随机移除一个键</li>
+<li>volatile-ttl：在设置了过期时间的键空间中，有更早过期时间的优先移除</li>
+<li>noeviction：不做过期处理，返回写错误</li>
+</ul>
+</li>
+<li><p>Redis集群方案</p>
+<p><img src="http://asewqa.nj-dingri.com/c15a14767f00bcb58878b1d4b42ba71d.png" alt=""></p>
+<p>图中是6个redis实例构成的集群：</p>
+<ul>
+<li>6379端口为客户端通讯端口</li>
+<li>16379端口为集群总线端口</li>
+<li>集群内部划分为16384个数据分槽，分布在三个主redis中。</li>
+<li>从redis中没有分槽，不会参与集群投票，也不会帮忙加快读取数据，仅仅作为主机的备份。</li>
+<li>三个主节点中平均分布着16384数据分槽的三分之一，每个节点中不会存有有重复数据，仅仅有自己的从机帮忙冗余。</li>
+</ul>
+</li>
+<li><p>redis集群高可用原理</p>
+<ul>
+<li><p>Redis Sentinel （哨兵）是 Redis 的官方高可用解决方案，完成以下任务：</p>
+<ul>
+<li>监控，不断检查主从实例是否正常</li>
+<li>通知，实例不正常时可通过API通知</li>
+<li>自动故障转移</li>
+<li>配置提供者，客户单可连接哨兵查询主机地址</li>
+</ul>
+</li>
+<li><p>哨兵的启动和redis实例没有关系，可以在任何机器上启动，建议至少启动两个哨兵防止物理机宕机</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"># redis备机配置</span><br><span class="line">slaveof 192.168.1.100 6379</span><br><span class="line"></span><br><span class="line"># redis备转主</span><br><span class="line">slaveof no one</span><br><span class="line"></span><br><span class="line">sentinel monitor master 192.168.1.100 6379 2</span><br><span class="line"># 最后的2代表集群中有两个哨兵认为master挂了时才进行主备切换，redis备机配置</span><br></pre></td></tr></table></figure>
+</li>
+</ul>
+</li>
+<li><p>redis缓存分片</p>
+<ul>
+<li>客户端分片(可预分片，在项目初期分片，后期只是移动分片)</li>
+<li>代理协助分片</li>
+<li>服务器分片(查询路由)，随机连接一个节点，由节点转发请求</li>
+</ul>
+</li>
+<li><p>Redis事务相关命令</p>
+<ul>
+<li>MULTI，标记事务开始，后续命令放入队列</li>
+<li>EXEC，执行命令队列</li>
+<li>DISCARD，清除命令队列，并回到正常模式</li>
+<li>WATCH，在watch key之后，如果在exec之前key被修改，则exec不执行</li>
+<li>UNWATCH</li>
+</ul>
+</li>
+</ol>
+<p><a href="https://www.cnblogs.com/ysocean/p/9080942.html" target="_blank" rel="noopener">https://www.cnblogs.com/ysocean/p/9080942.html</a></p>
+<p><a href="https://blog.csdn.net/fanrenxiang/article/details/80542580" target="_blank" rel="noopener">https://blog.csdn.net/fanrenxiang/article/details/80542580</a></p>
+<p><a href="https://www.cnblogs.com/shamo89/p/8385390.html" target="_blank" rel="noopener">https://www.cnblogs.com/shamo89/p/8385390.html</a></p>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="google-site-verification" content="xBT4GhYoi5qRD5tr338pgPM5OWHHIDR6mNg1a3euekI" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Jieyuefeng&#39;s Blog">
+    <meta name="keyword"  content="">
+    <link rel="shortcut icon" href="/img/favicon.ico">
+
+    <title>
+        
+        4. 网络 - Jieyuefeng&#39;s Blog
+        
+    </title>
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/aircloud.css">
+    <link rel="stylesheet" href="/css/gitment.css">
+    <!--<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">-->
+    <link href="//at.alicdn.com/t/font_620856_pl6z7sid89qkt9.css" rel="stylesheet" type="text/css">
+    <!-- ga & ba script hoook -->
+    <script></script>
+</head>
+
+<body>
+
+<div class="site-nav-toggle" id="site-nav-toggle">
+    <button>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+        <span class="btn-bar"></span>
+    </button>
+</div>
+
+<div class="index-about">
+    <i>  </i>
+</div>
+
+<div class="index-container">
+    
+    <div class="index-left">
+        
+<div class="nav" id="nav">
+    <div class="avatar-name">
+        <div class="avatar">
+            <img src="/img/avatar.jpg" />
+        </div>
+        <div class="name">
+            <i>Jieyuefeng</i>
+        </div>
+    </div>
+    <div class="contents" id="nav-content">
+        <ul>
+            <li >
+                <a href="/">
+                    <i class="iconfont icon-shouye1"></i>
+                    <span>主页</span>
+                </a>
+            </li>
+            <li >
+                <a href="/tags">
+                    <i class="iconfont icon-biaoqian1"></i>
+                    <span>标签</span>
+                </a>
+            </li>
+            <li >
+                <a href="/archive">
+                    <i class="iconfont icon-guidang2"></i>
+                    <span>存档</span>
+                </a>
+            </li>
+            <li >
+                <a href="/about/">
+                    <i class="iconfont icon-guanyu2"></i>
+                    <span>关于</span>
+                </a>
+            </li>
+            
+            <li>
+                <a id="search">
+                    <i class="iconfont icon-sousuo1"></i>
+                    <span>搜索</span>
+                </a>
+            </li>
+            
+        </ul>
+    </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
+    
+</div>
+
+
+<div class="search-field" id="search-field">
+    <div class="search-container">
+        <div class="search-input">
+            <span id="esc-search"> <i class="icon-fanhui iconfont"></i></span>
+            <input id="search-input"/>
+            <span id="begin-search">搜索</span>
+        </div>
+        <div class="search-result-container" id="search-result-container">
+
+        </div>
+    </div>
+</div>
+        <div class="index-about-mobile">
+            <i>  </i>
+        </div>
+    </div>
+    
+    <div class="index-middle">
+        <!-- Main Content -->
+        
+
+
+<div class="post-container">
+    <div class="post-title">
+        4. 网络
+    </div>
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-04-11 01:46:26</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java学习" title="Java学习">Java学习</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <ol>
+<li><p>BIO、NIO和AIO</p>
+<ul>
+<li>BIO (Blocking IO)，同步并阻塞，服务器实现模式为一个连接一个线程，即客户端有连接请求时服务器端就需要启动一个线程进行处理，如果这个连接不做任何事情会造成不必要的线程开销。JDK1.4之前唯一的选择。</li>
+<li>NIO (Non-Blocking IO)，同步非阻塞，服务器端实现模式为一个连接一个线程，即客户端发送的连接请求都会注册到多路复用器上，多路复用器轮询到连接有IO请求时才启动一个线程进行处理。JDK1.4开始支持。</li>
+<li>AIO (Asynchronous IO)，异步非阻塞，服务器实现模式为一个有效请求一个线程，客户端的IO请求都是由OS先完成了再通知服务器应用去启动线程进行处理。JDK7开始支持。</li>
+</ul>
+</li>
+<li><p>Netty是什么</p>
+<ul>
+<li>Netty是一个高性能、异步事件驱动的NIO框架，它提供了对TCP、UDP和文件传输的支持，作为一个异步NIO框架，Netty的所有IO操作都是异步非阻塞的，通过Future-Listener机制，用户可以方便的主动获取或者通过通知机制获得IO结果</li>
+</ul>
+</li>
+<li><p>Netty的各大组件</p>
+<ul>
+<li><p><strong>Channel接口：基础的IO操作</strong>，如绑定、连接、读写等都依赖于底层网络传输所提供的原语，在Java的网络编程中，基础核心类是Socket，而Netty的Channel提供了一组API，极大地简化了直接与Socket进行操作的复杂性，并且Channel是很多类的父类，如EmbeddedChannel、LocalServerChannel、NioDatagramaChannel、NioSctpChannel、NioSocketChannel等。</p>
+</li>
+<li><p><strong>EventLoop接口：EventLoop定义了处理在连接过程中发生的事件的核心抽象</strong>。</p>
+<ul>
+<li>一个EventLoopGroup包含一个或多个EventLoop</li>
+<li>一个EventLoop在生命周期中绑定到一个Thread上</li>
+<li>EventLoop使用其对应的Thread处理IO事件</li>
+<li>一个Channel使用EventLoop进行注册</li>
+<li>一个EventLoop可被分配至一个或多个Channel</li>
+</ul>
+</li>
+<li><p><strong>ChannelFuture接口</strong>：Netty中的所有IO操作都是异步的，不会立即返回，需要在稍后确定操作结果，因此Netty提供了ChannelFuture，其addListener方法可以注册一个ChannelFutureListener，当操作完成时(不管是成功还是失败)，均会被通知，ChannelFuture存储了之后执行的操作的结果并且无法预测操作何时被执行，提交至Channel的操作按照被唤醒的顺序被执行。</p>
+</li>
+<li><p>ChannelHandler和ChannelPipeline与用户逻辑和数据流密切相关</p>
+</li>
+<li><p>ChannelHandler接口：从应用开发者看，ChannelHandler是最重要的组件，其中存放用来处理进站和出站数据的用户逻辑。ChannelHandler的方法被网络事件触发，ChannelHandler可以用于几乎任何类型的操作，如将数据从一种格式转换为另一种格式或者处理抛出的异常。例如，其子接口ChannelInboundHandler接受进站的事件和数据以便被用户定义的逻辑处理，或者当响应所连接的客户端时刷新ChannelInboundHandler的数据。</p>
+</li>
+<li><p>ChannelPipeline接口：ChannelPipeline为ChannelHandler链提供了一个容器并定义了用于沿着链传播入站和出站事件流的API。当创建Channel时，会自动创建一个附属的ChannelPipeline，ChannelHandler按照如下步骤安装在ChannelPipeline中。</p>
+<ul>
+<li>一个ChannelInitializer的实现在ServerBootstrap中进行注册</li>
+<li>当ChannelInitializer的initChannel方法被调用，ChannelInitializer在管道中安装一组自定义的ChannelHandlers</li>
+<li>ChannelInitializer从ChannelPipeline中移除自身</li>
+</ul>
+<p>ChannelHandler可被当做放置任何代码的容器，用于处理到达并通过ChannelPipeline的事件或数据，数据可沿着处理链进行传递。当事件从客户端移动至服务器端时称为出站，反之称为入站。并且入站处理器和出站处理器可共存于同一个管道中，当读取入站数据或事件时，将会从管道的头部开始传递到第一个入站处理器，然后传递至下一个处理器直至管道的尾部，此时数据处理结束，当出站时，沿着处理链直到管道的头，然后进行网络传输。</p>
+</li>
+<li><p><strong>Bootstrap：Netty的引导类应用程序网络层配置提供容器</strong>，其涉及将进程绑定到给定的端口或连接一个进程到远程主机的指定端口上运行的另一个进程。引导类分为客户端引导Bootstrap和服务器端引导ServerBootstrap。其中，ServerBootstrap绑定指定端口来监听客户端连接请求，Bootstrap连接至远程服务端，并且ServerBootstrap包含两个EventLoopGroup，而Bootstrap只包含一个EventLoopGroup。ServerBootstrap包含两组通道，第一组包含一个ServerChannel表示服务器绑定到本地端口的监听套接字；第二组包含用来处理客户端连接所创建的通道，每接受一个连接时便会创建一个通道。</p>
+</li>
+</ul>
+</li>
+<li><p>Netty的线程模型</p>
+</li>
+<li><p>TCP粘包/拆包的原因及解决方法</p>
+<ul>
+<li>发生的原因<ul>
+<li>待发送数据大于TCP缓冲区剩余大小，拆包</li>
+<li>待发送数据大于MSS(最大报文长度)，拆包</li>
+<li>待发送数据小于TCP缓冲区大小，粘包</li>
+<li>接收端没有及时读取缓冲区数据，粘包</li>
+</ul>
+</li>
+<li>解决方案<ul>
+<li>增加数据包头部</li>
+<li>封装为固定长度</li>
+<li>设置边界特殊字符</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>序列号协议及使用场景</p>
+<ul>
+<li>TCP序列号有32位，两个作用：syn=1时seq为初始值，syn=0时为当前连接累计发送的数据包字节数</li>
+<li>ACK=Next Seq</li>
+</ul>
+</li>
+<li><p>Netty的零拷贝实现</p>
+<ul>
+<li>传统意义上的零拷贝是指不在内核空间和用户空间之间拷贝数据，可通过FileChannel.transferTo()实现</li>
+<li><p>Netty在ByteBuffer也提供了零拷贝的实现</p>
+<ul>
+<li>HeapByteBuf：在堆内分配内存</li>
+<li>DirectByteBuf：直接在内存区域而不是堆区域分配，发送数据时不需要从堆拷贝到内存</li>
+<li>CompositeByteBuf：组合ByteBuf，不拷贝数据，只存储引用，实现逻辑组合</li>
+</ul>
+</li>
+<li>Netty的接收和发送ByteBuffer都采用DirectByteBuf，使用堆外内存进行读写，避免了二次拷贝</li>
+<li>Netty提供了组合Buffer对象，可以聚合多个ByteBuffer</li>
+<li>Netty的文件传输采用了transferTo方法，它可以直接将文件缓冲区的数据发送到目标Channel</li>
+</ul>
+</li>
+<li><p>Netty的高性能表现在哪些方面</p>
+<ul>
+<li>异步非阻塞通信</li>
+<li>零拷贝</li>
+<li>内存池ByteBuf</li>
+<li>高效的Reactor线程模型<ul>
+<li>Reactor单线程模型：所有的IO操作都在同一个NIO线程上面完成</li>
+<li>Reactor多线程模型：一个Acceptor线程 + 读写线程池</li>
+<li>主从Reactor多线程模型：多个Acceptor线程（accept + 认证）+ 读写线程池</li>
+</ul>
+</li>
+<li>无锁化的串行设计理念：同一个Channel在同一个线程</li>
+<li>高效的并发编程<ul>
+<li>volatile的大量、正确使用</li>
+<li>CAS和原子类的广泛使用</li>
+<li>线程安全容器的使用</li>
+<li>通过读写锁提升并发性能</li>
+</ul>
+</li>
+<li>高性能的序列化框架：默认使用Protobuf，可扩展Thrift</li>
+<li>灵活的TCP参数配置能力<ul>
+<li>buffer大小</li>
+<li>nodelay</li>
+<li>软中断(连接和cpu绑定)</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>参考资料</p>
+<ul>
+<li><a href="https://www.cnblogs.com/leesf456/p/6831661.html" target="_blank" rel="noopener">Netty核心组件</a></li>
+</ul>
+</li>
+</ol>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
+    </div>
+</div>
+
+    </div>
+</div>
+
+
+<footer class="footer">
+    <ul class="list-inline text-center">
+        
+        <li>
+            <a target="_blank" href="https://twitter.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-twitter"></i>
+                            </span>
+            </a>
+        </li>
+        
+        
+        <li>
+            <a target="_blank" href="https://www.zhihu.com/people/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                 <i class="iconfont icon-zhihu"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="http://weibo.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                  <i class="iconfont icon-weibo"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank" href="https://www.facebook.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-facebook"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://github.com/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-github"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+        
+        <li>
+            <a target="_blank"  href="https://www.linkedin.com/in/jieyuefeng">
+                            <span class="fa-stack fa-lg">
+                                <i class="iconfont icon-linkedin"></i>
+                            </span>
+            </a>
+        </li>
+        
+
+    </ul>
+    
+    <p>
+        <span id="busuanzi_container_site_pv">
+            <span id="busuanzi_value_site_pv"></span>PV
+        </span>
+        <span id="busuanzi_container_site_uv">
+            <span id="busuanzi_value_site_uv"></span>UV
+        </span>
+        Created By <a href="https://hexo.io/">Hexo</a>  Theme <a href="https://github.com/aircloud/hexo-theme-aircloud">AirCloud</a></p>
+</footer>
+
+
+
+
+</body>
+
+<script>
+    // We expose some of the variables needed by the front end
+    window.hexo_search_path = "search.json"
+    window.hexo_root = "/"
+    window.isPost = true
+</script>
+<script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
+<script src="/js/index.js"></script>
+<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+
+
+
+
+</html>

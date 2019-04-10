@@ -11,7 +11,7 @@
 
     <title>
         
-        About - Jieyuefeng&#39;s Blog
+        15. Kafka - Jieyuefeng&#39;s Blog
         
     </title>
 
@@ -71,7 +71,7 @@
                     <span>存档</span>
                 </a>
             </li>
-            <li  class=active >
+            <li >
                 <a href="/about/">
                     <i class="iconfont icon-guanyu2"></i>
                     <span>关于</span>
@@ -87,6 +87,10 @@
             
         </ul>
     </div>
+    
+        <div id="toc" class="toc-article">
+    
+</div>
     
 </div>
 
@@ -111,17 +115,56 @@
     <div class="index-middle">
         <!-- Main Content -->
         
-<div class="post-content ">
-    <blockquote>
-<p>大多数时候，都在思考自己该走向何方</p>
-</blockquote>
-<p>9月21日上午，阳光明媚，鲜花斗艳。帕洛阿尔托苹果店里欢声笑语，人头攒动。苹果公司首席执行官蒂姆·库克先生在店长欧阳猛南陪同下，不远千米，深入到一线店面，为那里的员工带去节曰的问候和良好的祝愿。<br><br>“果粉们，你们辛苦了，我代表某果公司，祝你们身体健康，生活幸福，工作成功！”库克亲切慰问广大员工和顾客，并就iOS7、iPhone 5S和iPhone 5C的销售状况进行调研。 <br><br>“您现在每月工资有多少？肾5S拿到了吗？”在店里，库克关切地向果粉们问起这一问题。当听说果粉们排到了5S，库克满意地连连点头。接着他指出，近年来苹果事业发展取得巨大成就，特别是iPhone影响剧增，老百姓对iOS满意度逐步提高，在这个转变过程中，果粉的辛勤工作功不可没。<br><br>库克看到一个中国小朋友在排队买iPhone 5S，亲切的问：“5288元一台能承受不？”小朋友回答到：“能！”当得知这位小朋友卖了一个肾来买iPhone 5S时，库克叮嘱道：“在支持苹果的同时，也要爱护身体。”<br><br>库克与购买苹果手机的果粉们兴致勃勃地参观了苹果专卖店，和员工们拉了拉家常，并饶有兴趣地玩了四盘切西瓜游戏，与普通员工同乐。<br><br>在交谈中，库克多次关心地强调：“有了iPhone 5C，就不卖iPhone 5了。”并对顾客说：“好好休息，身体是革命的本钱嘛！”会谈始终在亲切友好的气氛中进行。<br><br>顾客们就库克的讲话达成了广泛的共识，并承认世界上只有iOS最流畅，要紧紧的团结在以库克先生为首席执行官的苹果公司集体周围，一心一意抓学习，聚精会神谋发展。<br><br>帕洛阿尔托苹果专卖店当日原则通过《蒂姆·库克首席执行官在加州新苹果店的讲话纪要》，并下发各分店认真学习、研讨。</p>
-<p style="text-align:right;"><br>    —— <a href="http://www.zhihu.com/question/19687065" target="_blank" rel="noopener">李书航 － 什么是「共产中文腔调」？ </a><br></p>
 
-    
-    <div id="comment-container">
+
+<div class="post-container">
+    <div class="post-title">
+        15. Kafka
     </div>
-    <div id="lv-container">
+
+    <div class="post-meta">
+        <span class="attr">发布于：<span>2019-04-11 01:46:26</span></span>
+        
+        <span class="attr">标签：/
+        
+        <a class="tag" href="/tags/#Java团长" title="Java团长">Java团长</a>
+        <span>/</span>
+        
+        
+        </span>
+        <span class="attr">访问：<span id="busuanzi_value_page_pv"></span>
+</span>
+</span>
+    </div>
+    <div class="post-content ">
+        <p><strong>十五、Kafka</strong></p>
+<p><strong>152. kafka 可以脱离 zookeeper 单独使用吗？为什么？</strong></p>
+<p>kafka 不能脱离 zookeeper 单独使用，因为 kafka 使用 zookeeper 管理和协调 kafka 的节点服务器。</p>
+<p><strong>153. kafka 有几种数据保留的策略？</strong></p>
+<p>kafka 有两种数据保存策略：按照过期时间保留和按照存储的消息大小保留。</p>
+<p><strong>154. kafka 同时设置了 7 天和 10G 清除数据，到第五天的时候消息达到了 10G，这个时候 kafka 将如何处理？</strong></p>
+<p>这个时候 kafka 会执行数据清除工作，时间和大小不论那个满足条件，都会清空数据。</p>
+<p><strong>155. 什么情况会导致 kafka 运行变慢？</strong></p>
+<ul>
+<li>cpu 性能瓶颈</li>
+<li>磁盘读写瓶颈</li>
+<li>网络瓶颈</li>
+</ul>
+<p><strong>156. 使用 kafka 集群需要注意什么？</strong></p>
+<ul>
+<li>集群的数量不是越多越好，最好不要超过 7 个，因为节点越多，消息复制需要的时间就越长，整个群组的吞吐量就越低。</li>
+<li>集群数量最好是单数，因为超过一半故障集群就不能用了，设置为单数容错率更高。</li>
+</ul>
+
+        
+        <br />
+        <div id="comment-container">
+        </div>
+        <div id="disqus_thread"></div>
+
+        <div id="lv-container">
+        </div>
+
     </div>
 </div>
 
@@ -211,7 +254,7 @@
     // We expose some of the variables needed by the front end
     window.hexo_search_path = "search.json"
     window.hexo_root = "/"
-    window.isPost = false
+    window.isPost = true
 </script>
 <script src="https://cdn.bootcss.com/jquery/3.3.1/jquery.min.js"></script>
 <script src="/js/index.js"></script>
