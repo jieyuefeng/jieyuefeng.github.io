@@ -137,22 +137,56 @@
 </span>
     </div>
     <div class="post-content ">
-        <ol>
-<li>MAVEN<ul>
-<li>Lifecycle、Phase、Goal</li>
-<li>Nexus</li>
-<li>Gradle</li>
+        <p>DevOps是什么？从概念上说，DevOps 是一种方法论，是一组过程、方法与系统的统称,用于促进应用开发、应用运维和质量保障（QA）部门之间的沟通、协作与整合。</p>
+<ol>
+<li><p>MAVEN</p>
+<ul>
+<li><p>依赖范围Scope</p>
+<ul>
+<li>compile：编译(默认)，对于编译、测试、运行都有效</li>
+<li>test：仅测试</li>
+<li>provided：运行时不需要（运行环境已提供）</li>
+<li>runtime：运行时需要</li>
 </ul>
 </li>
-<li>Jenkins（自动部署环境）<ul>
+<li><p>生命周期Lifecycle</p>
+<ul>
+<li>Clean：清理</li>
+<li>Default：构建的核心部分，编译、测试、打包、部署等</li>
+<li>Site：生成站点</li>
+</ul>
+</li>
+<li>每个生命周期有一些阶段Phase组成<ul>
+<li>Clean：pre-clean、clean、post-clean</li>
+<li>Default：compile、install、deploy等</li>
+<li>Site：pre-site、site、post-site、site-deploy等</li>
+</ul>
+</li>
+<li>插件Plugin(插件的功能就是目标Goal)<ul>
+<li>maven的核心仅定义了抽象的生命周期，具体任务有插件完成</li>
+<li>每个插件都能实现多个功能，每个功能就是一个目标Goal</li>
+<li>maven的生命周期与插件的目标项目绑定，以完成某个具体的构建任务，例如compile就是插件maven-compiler-plugin的一个目标</li>
+</ul>
+</li>
+</ul>
+</li>
+<li><p>Nexus</p>
+</li>
+<li><p>Gradle</p>
+</li>
+<li><p>Jenkins（自动部署环境）</p>
+<ul>
 <li>搭建</li>
 <li>集成maven、git</li>
 <li>多环境发布</li>
 </ul>
 </li>
-<li>Sonar</li>
-<li>Git</li>
-<li>敏捷开发</li>
+<li><p>Sonar</p>
+</li>
+<li><p>Git</p>
+</li>
+<li><p>敏捷开发</p>
+</li>
 </ol>
 
         
